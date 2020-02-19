@@ -1,40 +1,39 @@
-<ion-header>
+<ion-header>  
   <ion-toolbar>
-    <ion-buttons slot="end">
-        <ion-icon slot="end" color="medium" name="cart"></ion-icon>
-        <ion-icon slot="end" color="medium" name="contact" routerLink="/login"></ion-icon>
-      <ion-menu-button>
-      </ion-menu-button>
-    </ion-buttons>
     <ion-buttons slot="start" routerLink="/home">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/EBay_logo.png" alt="" height="50px">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="end" color="medium" name="cart"></ion-icon>
+      <ion-icon slot="end" color="medium" name="contact" routerLink="/login"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
+
   <ion-searchbar animated placeholder="Buscar..." (ionInput)="buscarProducto($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-card *ngFor="let producto of productos; let i = index">
-          <ion-card-header>
-              <button>
-                <p>{{producto.name}}</p>
-              </button>
-          </ion-card-header>
-    
-          <ion-card-content>
-              <ion-list>
-                <div style="font-size: 18px; color: black;">
-                  <ion-icon name="person"></ion-icon>
-                  <i> {{producto.username}}</i>
-                </div>  
-    
-                <div style="font-size: 18px; color: black;">
-                  <ion-icon name="mail"></ion-icon>
-                  <i> {{producto.email}}</i>
-                </div>
-              </ion-list>
-          </ion-card-content>
-      </ion-card>
-    </ion-list>
+  <ion-list>
+      <ion-card *ngFor="let producto of productos; let i = index">
+        <ion-card-header>
+            <button>
+              <p>{{producto.name}}</p>
+            </button>
+        </ion-card-header>
+  
+        <ion-card-content>
+            <ion-list>
+              <div style="font-size: 18px; color: black;">
+                <ion-icon name="person"></ion-icon>
+                <i> {{producto.username}}</i>
+              </div>  
+  
+              <div style="font-size: 18px; color: black;">
+                <ion-icon name="mail"></ion-icon>
+                <i> {{producto.email}}</i>
+              </div>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
