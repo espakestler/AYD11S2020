@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { ApiService } from '../services/api.service'
+import { async } from 'q';
 
 @Component({
   selector: 'app-producto',
@@ -7,15 +9,20 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
-  codigoProducto: any
   
-  constructor(private route: ActivatedRoute) { }
+  producto: any
+  
 
-  ngOnInit() 
+  constructor(private route: ActivatedRoute, public servicio: ApiService) { }
+
+  async ngOnInit() 
   {
     this.route.queryParams.subscribe(params => {
-      this.codigoProducto = params["codigoProducto"];
-  });
+
+      this.servicio.getProduct(params["codigoProducto"]).subscribe(m => {
+        this.producto = m['data'][0];        
+      })
+    });
   }
 
 }

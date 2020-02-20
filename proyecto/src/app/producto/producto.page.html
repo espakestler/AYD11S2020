@@ -1,9 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>producto</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header>  
+    <ion-toolbar>
+      <ion-buttons slot="start" routerLink="/home">
+        <img src="../../assets/icon/logo.png" alt="" height="50px">
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-icon slot="end" color="medium" name="cart"></ion-icon>
+        <ion-icon slot="end" color="medium" name="contact" routerLink="/login"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+    </ion-header>
 
 <ion-content>
-  {{codigoProducto}}
+  <div style="color: #19303F; font: 20px sans-serif;"><b><i>{{producto.nombre}}</i></b></div>
+  <img src={{producto.url_foto}} alt="">
+  <div style="color:#21497D; font: 20px sans-serif;"><b>Q. {{producto.precio}}</b></div>
+
+  <ion-item>
+      <ion-label>Cantidad: </ion-label>
+      <!--<ion-select placeholder="1" *ngFor="let val of producto.disponible">
+        <ion-select-option value="1">{{val}}</ion-select-option>
+      </ion-select>-->
+      <ion-select placeholder="1">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+          <ion-select-option value="6">6</ion-select-option>
+          <ion-select-option value="7">7</ion-select-option>
+          <ion-select-option value="8">8</ion-select-option>
+          <ion-select-option value="9">9</ion-select-option>
+        </ion-select>
+    </ion-item>
+  <ion-button expand="full" color="success">Agregar al carrito</ion-button>
+  <hr>
+  <hr>
+  <div><b>Categorias: {{producto.categoria}}</b></div>
+  <hr>
+  <div style="color:#21497D; font: 20px sans-serif;"><b><i>Descripcion: </i></b></div>
+  <div>{{producto.descripcion}}</div>
+  <hr>
+  <hr>
 </ion-content>

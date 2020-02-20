@@ -9,6 +9,10 @@ export class ApiService {
   constructor(public http: HttpClient) { }
 
   getData(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-productos');
+  }
+
+  getProduct(codigo){
+    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-productos?codigo='+codigo);
   }
 }

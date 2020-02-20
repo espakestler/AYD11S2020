@@ -18,8 +18,8 @@ export class HomePage {
   async ngOnInit()
   {
     this.servicio.getData().subscribe(m => {
-      this.catalogo = m;
-      this.productos = m;
+      this.catalogo = m["data"];
+      this.productos = m["data"];
     })
   }
 
