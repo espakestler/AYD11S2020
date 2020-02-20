@@ -37,7 +37,7 @@ export class HomePage {
     if (prod && prod.trim() != '')
     {
       this.productos = this.productos.filter((p) =>{
-        return (p.name.toLowerCase().indexOf(prod.toLowerCase()) > -1)
+        return (p.nombre.toLowerCase().indexOf(prod.toLowerCase()) > -1)
       })
     }
   }
