@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-producto',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
+  codigoProducto: any
+  
+  constructor(private route: ActivatedRoute) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.route.queryParams.subscribe(params => {
+      this.codigoProducto = params["codigoProducto"];
+  });
   }
 
 }
