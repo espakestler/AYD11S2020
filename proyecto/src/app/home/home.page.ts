@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service'
 
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -10,7 +13,7 @@ export class HomePage {
   catalogo: any;
   productos : any;
 
-  constructor(public servicio: ApiService) {}
+  constructor(public servicio: ApiService, public navCtrl: NavController) {}
 
   async ngOnInit()
   {
@@ -37,6 +40,16 @@ export class HomePage {
         return (p.name.toLowerCase().indexOf(prod.toLowerCase()) > -1)
       })
     }
+  }
+  async openProduct(codP:any)
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          codigoProducto: codP
+      }
+    };
+
+    this.navCtrl.navigateForward(['producto'], navigationExtras);
   }
 
 }
