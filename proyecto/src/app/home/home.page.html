@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-      <ion-card *ngFor="let producto of productos; let i = index">
+      <ion-card *ngFor="let producto of productos; let i = index" (click)="openProduct(producto.username)">
         <ion-card-header>
             <button>
               <p>{{producto.name}}</p>
