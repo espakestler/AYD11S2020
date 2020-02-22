@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Router } from  "@angular/router";
-import { AuthService } from '../services/auth.service';
-import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,28 +9,21 @@ import { ToastController } from '@ionic/angular';
 })
 export class SignUpPage implements OnInit {
 
-  constructor(private authService: AuthService, 
-              public router: Router,
-              private toastController: ToastController) {}
+  constructor(private alertController: AlertController, private  router:  Router) {}
 
   ngOnInit() {
   }
 
-  registrar(form) {
-    this.authService.register(form.value.nombre,
-                              form.value.email, form.value.pass,
-                              form.value.fecha,
-                              form.value.direccion,"1").then( res =>{
-      this.router.navigate(['/home']);
-    }).catch(err => this.presentToast('No se ha podido registrar, revise sus datos'))
-  }
-
-  async presentToast(mensaje:string) {
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 2000
+  async registro(form) {
+    const alert = await this.alertController.create({
+      header: 'Registro Exitoso',
+      subHeader: '¡Gracias!',
+      message: 'Revisa tu bandeja de correos.',
+      buttons: ['OK']
     });
-    toast.present();
+
+    await alert.present();
+    this.router.navigateByUrl('home');
   }
 
 }
