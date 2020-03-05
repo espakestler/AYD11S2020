@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" routerLink="/home">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button> </ion-menu-button>
+      <ion-icon slot="end" color="medium" name="cart" routerLink="/carrito"></ion-icon>
+      <ion-icon slot="end" color="medium" name="contact" routerLink="/login"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar animated placeholder="Buscar..." (ionInput)="buscarProducto($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  
+</ion-content>
