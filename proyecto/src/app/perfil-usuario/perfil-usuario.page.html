@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>perfil_usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+<!-- (ngSubmit)="save()" -->
+    <form #saveForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <!-- [(ngModel)]="info.name" -->
+              <ion-input type="text" placeholder="Name" name="name" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <!--[(ngModel)]="info.email"  -->
+              <ion-input type="text" placeholder="Email" name="email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <!-- [(ngModel)]="info.password" -->
+              <ion-input type="password" placeholder="Password" name="password" ></ion-input>
+              <small>El campo en blanco no modifica la contraseña</small>
+            </ion-item>
+            <ion-item>
+              <!-- [(ngModel)]="info.name" -->
+              <ion-input type="text" placeholder="Direccion" name="direccion" required></ion-input>
+            </ion-item>
+            <ion-item> 
+              <ion-label>Fecha Nacimiento</ion-label>
+              <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <!-- [disabled]="!saveForm.form.valid"-->
+          <ion-button class="submit-btn" full type="submit" >Guardar</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+</ion-content>
