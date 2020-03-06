@@ -38,6 +38,10 @@ const routes: Routes = [
   },  {
     path: 'perfil-usuario',
     loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
+  },
+  {
+    path: 'detalle-facturacion',
+    loadChildren: () => import('./detalle-facturacion/detalle-facturacion.module').then( m => m.DetalleFacturacionPageModule)
   }
 
 
