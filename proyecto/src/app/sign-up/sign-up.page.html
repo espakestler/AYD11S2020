@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start" routerLink="/home">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start" routerLink="/landing">
       <img src="../../assets/icon/logo.png" alt="" height="50px">
     </ion-buttons>
   </ion-toolbar>
@@ -35,6 +35,11 @@
     <ion-button expand="block" size="large" type="submit" [disabled]="form.invalid">
       Registrarse
     </ion-button>
+
+    <ion-row class="ion-justify-content-center">
+      <div class="ion-text-center">¿Ya tienes una cuenta? <a routerLink='/login'>Entra</a></div>
+    </ion-row>
+
   </form>
 
 </ion-content>
