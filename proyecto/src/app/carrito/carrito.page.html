@@ -14,11 +14,19 @@
 
 <ion-content>
   <div *ngFor="let producto of listaProductos; let i = index">
-    <b>{{ producto.nombre }}</b>
+    <b>{{ producto.codigo }}</b>
+    <b>{{ producto.nombre }}</b>    
+    <img src={{producto.url_foto}} alt="">
+    <b>{{ producto.descripcion }}</b>
     <b>Q. {{ producto.precio }}</b>
-  </div>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    </div>
+  
+  <ion-button expand="full" color="success" (click)="print()"> Comprar</ion-button>
 
-
-    <ion-button expand="full" color="success" (click)="print()"> obtener</ion-button>
-    <!--<ion-button expand="full" color="success"> Comprar</ion-button>-->
+    <!-- <ion-button expand="full" color="success" (click)="print()"> obtener</ion-button>
+   <ion-button expand="full" color="success"> Comprar</ion-button>-->
 </ion-content>
