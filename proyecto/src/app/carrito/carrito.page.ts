@@ -14,20 +14,18 @@ export class CarritoPage implements OnInit {
   listaProductos: any[]
 
   async ngOnInit() {    
-    
 
     await this.storageService.getObject('id_usuario').then(result => {
       this.listaProductos = result;
 
-      /*if (!this.listaProductos) {
+      if (!this.listaProductos) 
+      {
         this.listaProductos = []
-      }*/
-
-      this.print()
+      }
     })
     
   }
-
+  
   print()
   {
     for(var i = 0; i < this.listaProductos.length; i++){

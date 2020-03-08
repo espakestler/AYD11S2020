@@ -13,8 +13,8 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let producto of listaProducto; let i = index">
-    <b>Producto</b>
+  <div *ngFor="let producto of listaProductos; let i = index">
+    <b>{{ producto.nombre }}</b>
     <b>Q. {{ producto.precio }}</b>
   </div>
 
