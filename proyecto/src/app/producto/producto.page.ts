@@ -13,19 +13,20 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 export class ProductoPage implements OnInit {
 
   producto: any
-
+  dataReady = false
 
   constructor(private route: ActivatedRoute, public servicio: ApiService, public storageService: StorageService) { }
 
   async ngOnInit() {
-    this.route.queryParams.subscribe(params => {
 
-      this.servicio.getProduct(params["codigoProducto"]).subscribe(m => {
+    this.storageService.getObject('codigo_producto').then(async result => {
+
+      this.servicio.getProduct(result).subscribe(m => {
         this.producto = m['data'][0];
+        this.dataReady = true
       })
-    });
+    })
   }
-
 
   setProductoCarrito(productoCarrito) {
 

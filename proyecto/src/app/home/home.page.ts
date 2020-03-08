@@ -3,6 +3,8 @@ import { ApiService } from '../services/api.service'
 
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { Router } from  "@angular/router";
+import { StorageService } from '../storage.service'
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,8 @@ export class HomePage {
   catalogo: any;
   productos : any;
 
-  constructor(public servicio: ApiService, public navCtrl: NavController) {}
+  constructor(public servicio: ApiService, public navCtrl: NavController, private  router:  Router,
+    public storageService: StorageService) {}
 
   async ngOnInit()
   {
@@ -43,13 +46,10 @@ export class HomePage {
   }
   async openProduct(codP:any)
   {
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          codigoProducto: codP
-      }
-    };
 
-    this.navCtrl.navigateForward(['producto'], navigationExtras);
+    this.storageService.set('codigo_producto', codP).then( ()=>{
+      this.router.navigateByUrl('producto');
+    })
   }
 
 }

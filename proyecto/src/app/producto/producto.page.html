@@ -12,6 +12,7 @@
     </ion-header>
 
 <ion-content>
+  <div *ngIf="dataReady">
   <div style="color: #19303F; font: 20px sans-serif;"><b>{{producto.nombre}}</b></div>
   <img src={{producto.url_foto}} alt="">
   <div style="color:#21497D; font: 20px sans-serif;"><b>Q. {{producto.precio}}</b></div>
@@ -42,4 +43,5 @@
   <div [innerHTML]="producto.descripcion"></div>
   <hr>
   <hr>
+</div>
 </ion-content>
