@@ -52,4 +52,9 @@ export class HomePage {
     })
   }
 
+  cerrarSesion()
+  {
+    
+  }
+
 }
