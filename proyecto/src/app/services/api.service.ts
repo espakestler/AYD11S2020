@@ -15,4 +15,7 @@ export class ApiService {
   getProduct(codigo){
     return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-productos?codigo='+codigo);
   }
+
+
+  
 }

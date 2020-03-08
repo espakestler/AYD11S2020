@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { ApiService } from '../services/api.service'
-import { async } from 'q';
-
+import { StorageService} from '../storage.service'
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-carrito',
@@ -11,19 +9,43 @@ import { async } from 'q';
 })
 export class CarritoPage implements OnInit {
 
-  producto: any
-  
+  constructor(public storageService: StorageService) { }
 
-  constructor(private route: ActivatedRoute, public servicio: ApiService) { }
+  listaProductos: any[]
 
-  async ngOnInit() 
+  async ngOnInit() {    
+    
+
+    await this.storageService.getObject('id_usuario').then(result => {
+      this.listaProductos = result;
+
+      /*if (!this.listaProductos) {
+        this.listaProductos = []
+      }*/
+
+      this.print()
+    })
+    
+  }
+
+  print()
   {
-    this.route.queryParams.subscribe(params => {
+    for(var i = 0; i < this.listaProductos.length; i++){
+        
+      console.log(this.listaProductos[i].codigo);
+      console.log(this.listaProductos[i].url_foto);
+    }
+  }
 
-      this.servicio.getProduct(params["codigoProducto"]).subscribe(m => {
-        this.producto = m['data'][0];        
-      })
-    });
+  getProductoCarrito(){
+
+    this.storageService.getObject('id_usuario').then(result => {
+      console.log(result);;
+
+    
+    })
+
+
   }
 
 }
