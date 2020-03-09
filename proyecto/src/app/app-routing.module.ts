@@ -35,13 +35,18 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
-  },  {
+  },
+  {
     path: 'perfil-usuario',
     loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
   {
     path: 'detalle-facturacion',
     loadChildren: () => import('./detalle-facturacion/detalle-facturacion.module').then( m => m.DetalleFacturacionPageModule)
+  },
+  {
+    path: 'subir-producto',
+    loadChildren: () => import('./subir-producto/subir-producto.module').then( m => m.SubirProductoPageModule)
   }
 
 

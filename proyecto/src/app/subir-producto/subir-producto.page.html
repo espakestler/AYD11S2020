@@ -1,0 +1,58 @@
+<ion-header>  
+  <ion-toolbar>
+    <ion-buttons slot="start" routerLink="/home">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-menu-button> </ion-menu-button>
+        <div *ngIf="tipoAdministrador">
+          <ion-icon slot="end" color="success" name="md-add-circle" routerLink="/subir-producto"></ion-icon>
+        </div>
+        <div *ngIf="!tipoAdministrador">
+          <ion-icon slot="end" color="medium" name="cart" routerLink="/carrito"></ion-icon>
+        </div>
+        <ion-icon slot="end" color="medium" name="contact" routerLink="/perfil-usuario"></ion-icon>
+        <ion-icon slot="end" color="medium" name="md-log-out" (onclik)="cerrarSesion()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form #form="ngForm" (ngSubmit)="insertarProducto(form)">
+    <ion-item>
+      <ion-input type="text" placeholder="Nombre" name="nombre" required ngModel></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Precio" name="precio" required ngModel></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="url" placeholder="Url Foto" name="url_foto" required ngModel></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select placeholder="Seleccionar" required ng-model="select_categoria" ng-change="guardarCategoria(select_categoria)">
+          <ion-select-option *ngFor="let categoria of categorias; let i = index" value="{{ categoria.codigo }}">{{ categoria.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    <ion-item>
+      <ion-input type="number" placeholder="Cantidad" name="cantidad" required ngModel></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-item>
+        <ion-textarea rows="6" cols="20" placeholder="Descripcion"></ion-textarea>
+      </ion-item>
+    </ion-row>
+
+    <hr>
+    <div style="margin-left: 12%; width: 75%;">
+      <ion-button expand="block" size="medium" type="submit" [disabled]="form.invalid">Subir</ion-button>
+    </div>
+  </form>
+
+</ion-content>

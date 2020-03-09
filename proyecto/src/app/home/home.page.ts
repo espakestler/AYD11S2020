@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service'
 
-import { NavController } from '@ionic/angular';
-import { NavigationExtras } from '@angular/router';
 import { Router } from  "@angular/router";
 import { StorageService } from '../storage.service'
 
@@ -14,16 +12,25 @@ import { StorageService } from '../storage.service'
 export class HomePage {
   catalogo: any;
   productos : any;
+  tipoAdministrador = false
 
-  constructor(public servicio: ApiService, public navCtrl: NavController, private  router:  Router,
+  constructor(public servicio: ApiService, private  router:  Router,
     public storageService: StorageService) {}
 
   async ngOnInit()
   {
-    this.servicio.getData().subscribe(m => {
-      this.catalogo = m["data"];
-      this.productos = m["data"];
-    })
+    if(this.tipoAdministrador)
+    {
+      this.productos = []
+      this.catalogo = []
+    }
+    else
+    {
+      this.servicio.getData().subscribe(m => {
+        this.catalogo = m["data"];
+        this.productos = m["data"];
+      })
+    }
   }
 
   inicializarProductos()
@@ -44,6 +51,7 @@ export class HomePage {
       })
     }
   }
+
   async openProduct(codP:any)
   {
 
@@ -54,7 +62,7 @@ export class HomePage {
 
   cerrarSesion()
   {
-    
+
   }
 
 }
