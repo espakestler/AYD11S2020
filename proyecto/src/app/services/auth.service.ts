@@ -47,7 +47,7 @@ export class AuthService {
 
   logout() {
     this.currentUser = null;
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/landing']);
   }
 
   register(nombre:string, correo:string, pass:string, fecha:string, dir:string, tipo:string) {
