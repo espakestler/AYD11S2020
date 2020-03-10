@@ -42,8 +42,11 @@ export class CarritoPage implements OnInit {
 
     
     })
+  }
 
-
+  cerrarSesion()
+  {
+    
   }
 
 }

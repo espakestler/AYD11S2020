@@ -9,7 +9,6 @@ import { ApiService } from '../services/api.service'
 })
 export class SubirProductoPage implements OnInit {
 
-  tipoAdministrador = false
   categorias: any[]
   descripcion: any
   categoria_temp:any
@@ -37,6 +36,11 @@ export class SubirProductoPage implements OnInit {
   guardarCategoria(cate)
   {
     this.categoria_temp = cate
+  }
+
+  cerrarSesion()
+  {
+
   }
 
 }

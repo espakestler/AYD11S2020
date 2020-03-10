@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service'
 
 import { Router } from  "@angular/router";
 import { StorageService } from '../storage.service'
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-home',
@@ -12,25 +13,39 @@ import { StorageService } from '../storage.service'
 export class HomePage {
   catalogo: any;
   productos : any;
-  tipoAdministrador = false
+  usuario : User
+  dataReady = false
 
   constructor(public servicio: ApiService, private  router:  Router,
     public storageService: StorageService) {}
 
   async ngOnInit()
   {
-    if(this.tipoAdministrador)
-    {
-      this.productos = []
-      this.catalogo = []
-    }
-    else
-    {
-      this.servicio.getData().subscribe(m => {
-        this.catalogo = m["data"];
-        this.productos = m["data"];
-      })
-    }
+    this.storageService.getObject("usuario").then(result => {
+
+      if(!result)
+      {
+        this.router.navigate(["/landing"])
+        return
+      }
+
+      this.usuario = result;
+      this.dataReady = true;
+
+      if (this.usuario.codigo_tipousuario == 3 ||this.usuario.codigo_tipousuario == 1) 
+      {
+        this.productos = [];
+        this.catalogo = [];
+      } 
+      else 
+      {
+        this.servicio.getData().subscribe(m => {
+          this.catalogo = m["data"];
+          this.productos = m["data"];
+        });
+      }
+      
+    });
   }
 
   inicializarProductos()
@@ -62,7 +77,8 @@ export class HomePage {
 
   cerrarSesion()
   {
-
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
   }
 
 }

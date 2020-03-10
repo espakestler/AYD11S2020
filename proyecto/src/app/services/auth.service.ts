@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { map } from "rxjs/operators";
 
 import { User } from '../models/user';
+import { StorageService } from '../storage.service'
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class AuthService {
   };
   
   constructor(private http: HttpClient, 
-              private router: Router) { }
+              private router: Router, public storageService: StorageService) { }
 
   public get currentUserValue(): User {
     return this.currentUser;
@@ -34,11 +35,17 @@ export class AuthService {
       .pipe(map(data => data))
       .subscribe(data=> {
         let user:User = data['user'];
-        if (user) {
+        
+        if (user) 
+        {
           this.currentUser = user;
-          resolve(this.currentUser); 
+
+          this.storageService.setObject('usuario', user).then(result => {
+            resolve(this.currentUser);
+          });
         }
-        else {
+        else 
+        {
           rejected('error');
         }
       }, error => rejected(error));
