@@ -10,17 +10,16 @@ import { Router } from '@angular/router';
 })
 export class PerfilUsuarioPage implements OnInit {
 
+  Usuario:User;
   constructor(private authService: AuthService, 
               private router: Router) { }
-  Usuario:User;
-
+  
   ngOnInit() {
     this.Usuario = this.authService.currentUserValue;
     console.log(this.Usuario);
   }
 
   logout(){
-    alert("hola")
     this.authService.logout();
     this.router.navigate(['/landing']);
   }
