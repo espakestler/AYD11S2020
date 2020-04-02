@@ -16,8 +16,11 @@ export class HomePage {
   usuario : User
   dataReady = false
 
-  constructor(public servicio: ApiService, private  router:  Router,
-    public storageService: StorageService) {}
+  constructor(
+    public servicio: ApiService, 
+    private  router:  Router,
+    public storageService: StorageService
+    ) {}
 
   async ionViewWillEnter()
   {
