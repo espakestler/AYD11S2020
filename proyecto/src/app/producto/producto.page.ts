@@ -5,6 +5,8 @@ import { StorageService } from '../storage.service'
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { AlertController } from '@ionic/angular';
 
+import { Router } from  "@angular/router";
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.page.html',
@@ -18,7 +20,13 @@ export class ProductoPage implements OnInit {
   public cantidadArray: Array<string>;
   public cantidadActual: string;
 
-  constructor(private route: ActivatedRoute, public servicio: ApiService, public storageService: StorageService, public alertController: AlertController) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private servicio: ApiService, 
+    private storageService: StorageService, 
+    public alertController: AlertController,
+    private  router:  Router
+    ) { }
 
   async ngOnInit() {
     this.cantidadArray = ["Otra", "1", "2", "3" ];
@@ -108,5 +116,10 @@ await alert.present();
 
   }
 
+  cerrarSesion()
+  {
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
+  }
 
 }

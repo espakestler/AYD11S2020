@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService} from '../storage.service'
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { Router } from  "@angular/router";
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -9,7 +11,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CarritoPage implements OnInit {
 
-  constructor(public storageService: StorageService) { }
+  constructor(
+    private storageService: StorageService,
+    private  router:  Router
+    ) { }
 
   listaProductos: any[]
 
@@ -46,7 +51,8 @@ export class CarritoPage implements OnInit {
 
   cerrarSesion()
   {
-    
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
   }
 
 }
