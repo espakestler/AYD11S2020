@@ -18,7 +18,10 @@ export class PerfilUsuarioPage implements OnInit {
   
   ngOnInit() {
     this.storageService.getCurrentUser().then(result => {
+      //let prueba=JSON.parse(result);
+      
       this.Usuario = result;
+      console.log('Fecha:'+this.Usuario.fecha_nacimiento);
       this.dataReady = true;
     })
   }
@@ -26,6 +29,15 @@ export class PerfilUsuarioPage implements OnInit {
   logout(){
     this.storageService.remove("usuario")
     this.router.navigate(["/login"]);
+  }
+
+  guardar(modif:User){
+    console.log('Funcion para guardar informacion');
+      //primero elimino informacion
+      this.storageService.remove('usuario');
+      console.log('modificado: '+modif);
+      this.storageService.setObject('usuario',modif);
+
   }
 
 }

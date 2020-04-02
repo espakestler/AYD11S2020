@@ -18,7 +18,7 @@
     <form #saveForm="ngForm" *ngIf="dataReady">
       <ion-row>
         <ion-col>
-          <ion-list inset>
+          <ion-list >
 
             <ion-item>
               <!-- [(ngModel)]="info.name" -->
@@ -40,7 +40,7 @@
             </ion-item>
             <ion-item> 
               <ion-label>Fecha Nacimiento</ion-label>
-              <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+              <ion-datetime value="{{Usuario.fecha_nacimiento}}" display-timezone="utc"></ion-datetime>
             </ion-item>
           </ion-list>
         </ion-col>
@@ -49,7 +49,7 @@
       <ion-row>
         <ion-col class="signup-col">
           <!-- [disabled]="!saveForm.form.valid"-->
-          <ion-button class="submit-btn" full type="submit" >Guardar</ion-button>
+          <ion-button  (click)="guardar(Usuario)">Guardar</ion-button>
         </ion-col>
       </ion-row>
 
