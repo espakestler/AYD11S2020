@@ -11,21 +11,24 @@ import { Router } from  "@angular/router";
 })
 export class CarritoPage implements OnInit {
 
+  listaProductos: any[]
+  listaProductos_bak : any[]
+
   constructor(
     private storageService: StorageService,
     private  router:  Router
     ) { }
 
-  listaProductos: any[]
-
   async ngOnInit() {    
 
     await this.storageService.getObject('id_usuario').then(result => {
       this.listaProductos = result;
+      this.listaProductos_bak = result;
 
       if (!this.listaProductos) 
       {
         this.listaProductos = []
+        this.listaProductos_bak = []
       }
     })
     
@@ -43,9 +46,8 @@ export class CarritoPage implements OnInit {
   getProductoCarrito(){
 
     this.storageService.getObject('id_usuario').then(result => {
-      console.log(result);;
-
-    
+      
+      console.log(result);
     })
   }
 
@@ -55,4 +57,22 @@ export class CarritoPage implements OnInit {
     this.router.navigate(["/login"])
   }
 
+  buscarProducto(evt:any)
+  {
+    let prod = evt.target.value;
+
+    this.restaurarProductos();
+
+    if (prod && prod.trim() != '')
+    {
+      this.listaProductos = this.listaProductos.filter((p) =>{
+        return (p.nombre.toLowerCase().indexOf(prod.toLowerCase()) > -1)
+      })
+    }
+  }
+
+  restaurarProductos()
+  {
+    this.listaProductos = this.listaProductos_bak;
+  }
 }
