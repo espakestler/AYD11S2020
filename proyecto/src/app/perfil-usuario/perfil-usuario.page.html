@@ -22,25 +22,25 @@
 
             <ion-item>
               <!-- [(ngModel)]="info.name" -->
-              <ion-input type="text" name="name" required> {{Usuario.nombre}} </ion-input>
+              <ion-input  type="text" name="name" [(ngModel)]="Usuario.nombre" required> </ion-input>
             </ion-item>
 
             <ion-item>
               <!--[(ngModel)]="info.email"  -->
-              <ion-input type="text" name="email" required> {{Usuario.correo}} </ion-input>
+              <ion-input type="text" name="email" required > {{Usuario.correo}} </ion-input>
             </ion-item>
 
             <ion-item>
               <!-- [(ngModel)]="info.password" -->
-              <ion-input type="password" name="pass" required> {{Usuario.pass}} </ion-input>
+              <ion-input type="password" name="pass" [(ngModel)]="Usuario.pass" required>   </ion-input>
             </ion-item>
             <ion-item>
               <!-- [(ngModel)]="info.name" -->
-              <ion-input type="text" name="direccion" required> {{Usuario.direccion}} </ion-input>
+              <ion-input type="text" name="direccion" [(ngModel)]="Usuario.direccion" required>   </ion-input>
             </ion-item>
             <ion-item> 
               <ion-label>Fecha Nacimiento</ion-label>
-              <ion-datetime value="{{Usuario.fecha_nacimiento}}" display-timezone="utc"></ion-datetime>
+              <ion-datetime   value="{{Usuario.fecha_nacimiento}}"    display-timezone="utc"></ion-datetime>
             </ion-item>
           </ion-list>
         </ion-col>
