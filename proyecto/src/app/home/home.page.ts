@@ -19,7 +19,7 @@ export class HomePage {
   constructor(public servicio: ApiService, private  router:  Router,
     public storageService: StorageService) {}
 
-  async ngOnInit()
+  async ionViewWillEnter()
   {
     this.storageService.getObject("usuario").then(result => {
 
@@ -46,6 +46,11 @@ export class HomePage {
       }
       
     });
+  }
+  
+  
+  async ngOnInit()
+  {
   }
 
   inicializarProductos()

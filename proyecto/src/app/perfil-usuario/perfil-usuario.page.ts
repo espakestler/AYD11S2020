@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { StorageService } from '../storage.service'
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -11,17 +12,20 @@ import { Router } from '@angular/router';
 export class PerfilUsuarioPage implements OnInit {
 
   Usuario:User;
-  constructor(private authService: AuthService, 
-              private router: Router) { }
+  dataReady = false;
+
+  constructor(private router: Router, private storageService: StorageService) { }
   
   ngOnInit() {
-    this.Usuario = this.authService.currentUserValue;
-    console.log(this.Usuario);
+    this.storageService.getCurrentUser().then(result => {
+      this.Usuario = result;
+      this.dataReady = true;
+    })
   }
 
   logout(){
-    this.authService.logout();
-    this.router.navigate(['/landing']);
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"]);
   }
 
 }

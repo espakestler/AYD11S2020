@@ -15,7 +15,7 @@
 <ion-content>
   <div class="login-box">
 <!-- (ngSubmit)="save()" -->
-    <form #saveForm="ngForm">
+    <form #saveForm="ngForm" *ngIf="dataReady">
       <ion-row>
         <ion-col>
           <ion-list inset>
