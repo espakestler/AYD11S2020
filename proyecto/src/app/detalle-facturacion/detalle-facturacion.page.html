@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalle-facturacion</ion-title>
+    <ion-title>Detalle Factura</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -19,9 +19,12 @@
       <ion-col>
         precio
       </ion-col>
+      <ion-col>
+        cantidad
+      </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let producto of listaProductos; let i = index">
+    <ion-row *ngFor="let producto of lsProd; let i = index">
       <ion-col>
         {{ producto.codigo }}
       </ion-col>
@@ -30,6 +33,9 @@
       </ion-col>
       <ion-col>
         {{ producto.precio}}
+      </ion-col>
+      <ion-col>
+        {{ producto.cantidad}}
       </ion-col>
     </ion-row>
   </ion-grid>
