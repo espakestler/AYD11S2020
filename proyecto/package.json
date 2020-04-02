@@ -28,6 +28,7 @@
     "cordova-android": "8.1.0",
     "cordova-sqlite-storage": "^4.0.0",
     "core-js": "^2.5.4",
+    "crypto-js": "^4.0.0",
     "ionic3-star-rating": "^2.1.2",
     "ionic4-star-rating": "^1.1.1",
     "rxjs": "~6.5.1",
