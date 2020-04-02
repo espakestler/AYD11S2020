@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StorageService } from '../storage.service'
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPage implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
+  }
+
+  clear()
+  {
+    this.storageService.clear()
+    console.log('Clean')
   }
 
 }

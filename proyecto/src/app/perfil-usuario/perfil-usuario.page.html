@@ -27,7 +27,7 @@
 
             <ion-item>
               <!--[(ngModel)]="info.email"  -->
-              <ion-input type="text" name="email" required > {{Usuario.correo}} </ion-input>
+              <ion-input type="text" name="email" required readonly> {{Usuario.correo}} </ion-input>
             </ion-item>
 
             <ion-item>
@@ -40,7 +40,7 @@
             </ion-item>
             <ion-item> 
               <ion-label>Fecha Nacimiento</ion-label>
-              <ion-datetime   value="{{Usuario.fecha_nacimiento}}"    display-timezone="utc"></ion-datetime>
+              <ion-datetime value="{{Usuario.fecha_nacimiento}}" display-timezone="utc"></ion-datetime>
             </ion-item>
           </ion-list>
         </ion-col>

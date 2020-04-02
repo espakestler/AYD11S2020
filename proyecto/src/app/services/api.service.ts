@@ -8,11 +8,13 @@ export class ApiService {
 
   constructor(public http: HttpClient) { }
 
-  getData(){
+  getData()
+  {
     return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-productos');
   }
 
-  getProduct(codigo){
+  getProduct(codigo)
+  {
     return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-productos?codigo='+codigo);
   }
 
