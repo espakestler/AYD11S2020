@@ -40,7 +40,10 @@
             </ion-item>
             <ion-item> 
               <ion-label>Fecha Nacimiento</ion-label>
-              <ion-datetime   value="{{Usuario.fecha_nacimiento}}"    display-timezone="utc"></ion-datetime>
+              <ion-datetime   value="{{Usuario.fecha_nacimiento}}"
+              cancelText="Cancelar"
+             [(ngModel)]="Usuario.fecha_nacimiento"
+             [ngModelOptions]="{standalone: true}"></ion-datetime>
             </ion-item>
           </ion-list>
         </ion-col>
