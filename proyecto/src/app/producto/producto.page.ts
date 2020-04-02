@@ -17,6 +17,9 @@ export class ProductoPage implements OnInit {
   producto: any
   dataReady = false
   cantidad :any
+  comentarios:any[]
+  codigoProducto : any
+
   public cantidadArray: Array<string>;
   public cantidadActual: string;
 
@@ -33,9 +36,13 @@ export class ProductoPage implements OnInit {
     this.cantidadActual = "1";
 
     this.storageService.getObject('codigo_producto').then(async result => {   
+      this.codigoProducto = result;
+
       this.servicio.getProduct(result).subscribe(m => {
         this.producto = m['data'][0];
-        this.dataReady = true        
+        this.dataReady = true
+        
+        this.getComentarios(result)
       })
     })
   }
@@ -122,4 +129,30 @@ await alert.present();
     this.router.navigate(["/login"])
   }
 
+  agregarComentario(form)
+  {
+    this.storageService.getCurrentUser().then(result =>{
+
+      let data = {
+        texto: form.value.texto,
+        codigo_producto: this.codigoProducto,
+        codigo_usuario: result.codigo,
+        nombre_usuario: result.nombre,
+        correo_usuario: result.correo
+      }
+
+      //this.servicio.executePost('', data)
+      console.log(data)
+      
+      form.reset();
+      this.comentarios.push(data)
+      //this.getComentarios(this.codigoProducto)
+    })
+  }
+
+  getComentarios(codigo_producto){
+    this.servicio.getComentarios(codigo_producto).subscribe(d => {
+      this.comentarios = d["data"];
+    });
+  }
 }

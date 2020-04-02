@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+
+  options = {
+    headers: new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type':'application/json',
+    })
+  };
 
   constructor(public http: HttpClient) { }
 
@@ -23,6 +31,17 @@ export class ApiService {
     return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-getch-categorias')
   }
 
+  getComentarios(codigo_producto)
+  {
+    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/comentarios?codigo=' + codigo_producto)
+  }
+
+  executePost(url, data)
+  {
+    this.http.post(url, data, this.options).subscribe(data => {
+      console.log(data);
+    })
+  }
 
   
 }
