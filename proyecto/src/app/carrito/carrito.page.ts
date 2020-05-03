@@ -44,6 +44,10 @@ export class CarritoPage implements OnInit {
     }
   }
 
+  quitar(producto){
+    // Quita un elemento del carrito
+  }
+
   getProductoCarrito(){
 
     this.storageService.getObject('id_usuario').then(result => {
