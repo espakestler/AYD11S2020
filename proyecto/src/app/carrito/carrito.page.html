@@ -13,17 +13,13 @@
   <ion-searchbar animated placeholder="Buscar..." (ionInput)="buscarProducto($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div *ngFor="let producto of listaProductos; let i = index">
-    <b>{{ producto.codigo }}</b>
     <b>{{ producto.nombre }}</b>    
     <img src={{producto.url_foto}} alt="">
-    <b>{{ producto.descripcion }}</b>
     <b>Q. {{ producto.precio }}</b>
     <hr>
     <b>Cantidad: {{ producto.cantidadVendida }}</b>
-    <hr>
-    <hr>
     <hr>
     </div>
   

@@ -168,4 +168,9 @@ await alert.present();
     toast.present();
   }
 
+  async InfoVendedor(user:any) {
+    this.storageService.set('codigo_vendedor', user.codigo).then( ()=>{
+      this.router.navigateByUrl('/info-vendedor');
+    });
+  }
 }
