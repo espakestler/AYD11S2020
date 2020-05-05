@@ -47,7 +47,12 @@ const routes: Routes = [
   {
     path: 'subir-producto',
     loadChildren: () => import('./subir-producto/subir-producto.module').then( m => m.SubirProductoPageModule)
-  },  {
+  },
+  {
+    path: 'reporte-compras',
+    loadChildren: () => import('./reporte-compras/reporte-compras.module').then( m => m.ReporteComprasPageModule)
+  },
+  {
     path: 'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
@@ -55,9 +60,6 @@ const routes: Routes = [
     path: 'info-vendedor',
     loadChildren: () => import('./info-vendedor/info-vendedor.module').then( m => m.InfoVendedorPageModule)
   }
-
-
-
 ];
 
 @NgModule({

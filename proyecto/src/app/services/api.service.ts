@@ -37,10 +37,35 @@ export class ApiService {
   }
 
   executePost(url, data)
-  {
+  { 
+    
     this.http.post(url, data, this.options).subscribe(data => {
-      console.log(data);
-    })
+      data;
+    });
+  
+
+  }
+  
+
+  ejecutarPostPromise(url, data) : Promise<any>
+  {
+    return new Promise((resolve, rejected) => {
+      this.http.post(url, data, this.options)
+      .subscribe(data => {
+        resolve(data)
+      }, error => rejected(error));
+    });    
+  }
+
+  ejecutarPostDetalleVenta( data) : Promise<any>
+  {
+    let url='https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/crear-detalle-venta';
+    return new Promise((resolve, rejected) => {
+      this.http.post(url, data, this.options)
+      .subscribe(data => {
+        resolve(data)
+      }, error => rejected(error));
+    });    
   }
 
   

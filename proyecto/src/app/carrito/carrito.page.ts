@@ -41,7 +41,12 @@ export class CarritoPage implements OnInit {
         
       console.log(this.listaProductos[i].codigo);
       console.log(this.listaProductos[i].url_foto);
+      console.log(this.listaProductos[i]['usuario']);
     }
+  }
+
+  quitar(producto){
+    // Quita un elemento del carrito
   }
 
   getProductoCarrito(){
