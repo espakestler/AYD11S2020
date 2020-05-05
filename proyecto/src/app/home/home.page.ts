@@ -77,7 +77,6 @@ export class HomePage {
 
   async openProduct(codP:any)
   {
-
     this.storageService.set('codigo_producto', codP).then( ()=>{
       this.router.navigateByUrl('producto');
     })
