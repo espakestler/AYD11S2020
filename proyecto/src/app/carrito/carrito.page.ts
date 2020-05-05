@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService} from '../storage.service'
 import { Pipe, PipeTransform } from '@angular/core';
-
 import { Router } from  "@angular/router";
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-carrito',
@@ -16,7 +16,8 @@ export class CarritoPage implements OnInit {
 
   constructor(
     private storageService: StorageService,
-    private  router:  Router
+    private  router:  Router,
+    private toastController: ToastController
     ) { }
 
   async ngOnInit() {    
@@ -42,6 +43,10 @@ export class CarritoPage implements OnInit {
       console.log(this.listaProductos[i].url_foto);
       console.log(this.listaProductos[i]['usuario']);
     }
+  }
+
+  quitar(producto){
+    // Quita un elemento del carrito
   }
 
   getProductoCarrito(){
@@ -76,4 +81,24 @@ export class CarritoPage implements OnInit {
   {
     this.listaProductos = this.listaProductos_bak;
   }
+
+  async showToast() {
+    const toast = await this.toastController.create({
+      message: 'Tarea realizada!',
+      duration: 800,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  async showToastWithCloseButton() {
+    const toast = await this.toastController.create({
+      message: 'Tarea realizada',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
+  }
+
+
 }

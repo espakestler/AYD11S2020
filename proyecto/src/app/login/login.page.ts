@@ -42,6 +42,7 @@ export class LoginPage implements OnInit {
       this.authService.login(form.value.email, form.value.pass)
       .then(res => {
           form.reset()
+          window.location.reload()
           this.router.navigate(['/home']);
         }
       ).catch(err => this.presentToast('Los datos son incorrectos o ya existe el usuario'))

@@ -13,21 +13,32 @@
   <ion-searchbar animated placeholder="Buscar..." (ionInput)="buscarProducto($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content>
-  <div *ngFor="let producto of listaProductos; let i = index">
-    <b>{{ producto.codigo }}</b>
-    <b>{{ producto.nombre }}</b>    
-    <img src={{producto.url_foto}} alt="">
-    <b>{{ producto.descripcion }}</b>
-    <b>Q. {{ producto.precio }}</b>
-    <hr>
-    <b>Cantidad: {{ producto.cantidadVendida }}</b>
-    <hr>
-    <hr>
-    <hr>
-    </div>
 
-  <ion-button expand="full" color="success"  (click)="print()" routerLink="/detalle-facturacion"> Comprar</ion-button>
+<ion-content class="ion-padding">
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let producto of listaProductos">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src={{producto.url_foto}}>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ producto.nombre }}</h2>
+          <h3>Q.{{ producto.precio }}</h3>
+          <p>Cantidad: {{ producto.cantidadVendida }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="quitar(producto)" expandable>
+          Quitar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <ion-button expand="full" color="success" (click)="print()"  routerLink="/detalle-facturacion"> Comprar</ion-button>
+
 
     <!-- <ion-button expand="full" color="success" (click)="print()"> obtener</ion-button>
    <ion-button expand="full" color="success"> Comprar</ion-button>-->

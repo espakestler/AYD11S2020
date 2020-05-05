@@ -4,6 +4,7 @@ import { ApiService } from '../services/api.service'
 import { StorageService } from '../storage.service'
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 import { Router } from  "@angular/router";
 
@@ -28,7 +29,8 @@ export class ProductoPage implements OnInit {
     private servicio: ApiService, 
     private storageService: StorageService, 
     public alertController: AlertController,
-    private  router:  Router
+    private  router:  Router,    
+    private toastController: ToastController
     ) { }
 
   async ngOnInit() {
@@ -134,6 +136,7 @@ await alert.present();
       });
     })
 
+    this.showToast();
 
   }
 
@@ -169,4 +172,14 @@ await alert.present();
       this.comentarios = d["data"];
     });
   }
+
+  async showToast() {
+    const toast = await this.toastController.create({
+      message: '¡Se agrego al carrito!',
+      duration: 1000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
 }
