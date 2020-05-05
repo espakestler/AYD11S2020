@@ -24,7 +24,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let producto of lsProd; let i = index">
+    <ion-row *ngFor="let producto of detalleFac.detalle; let i = index">
       <ion-col>
         {{ producto.codigo }}
       </ion-col>
@@ -47,37 +47,8 @@
       Total
     </ion-col>
     <ion-col>
-      {{total}}
+     Q {{detalleFac.total}}
     </ion-col>
   </ion-row>
-  <!--
-     <div >
-    <b>{{ producto.codigo }}</b>
-    <b>{{ producto.nombre }}</b>    
-    <b>Q. {{ producto.precio }}</b>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    </div>-->
-
-  <!--<ion-list>
-    <ion-item>
-      <ion-label> Memorias [5]</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Disco de Estado solido[4] </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Persianas[1]</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pachones [2]</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Super Mario World</ion-label>
-    </ion-item>
-  </ion-list> -->
-
-
+ 
 </ion-content>

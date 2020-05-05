@@ -5,6 +5,8 @@ import { ToastController } from '@ionic/angular';
 import { DecimalPipe } from '@angular/common';
 import { prodDetalle } from '../models/prodDetalle';
 import { element } from 'protractor';
+import { DetalleFactura } from '../models/DetalleFactura';
+import { parse } from 'querystring';
 @Component({
   selector: 'app-detalle-facturacion',
   templateUrl: './detalle-facturacion.page.html',
@@ -18,8 +20,10 @@ export class DetalleFacturacionPage implements OnInit {
    listaProductos: any[];
    productos: any[];
    lsProd: prodDetalle []=[];
+   detalleFac: DetalleFactura;
   
   async ngOnInit() {
+    this.detalleFac = new DetalleFactura();
     await this.storageService.getObject('id_usuario').then(result => {
       this.listaProductos = result;
        
@@ -32,7 +36,7 @@ export class DetalleFacturacionPage implements OnInit {
         this.listaProductos = [];
       
       }
-      this.getTotal(this.listaProductos);
+     
     })
 
   }
@@ -44,7 +48,7 @@ export class DetalleFacturacionPage implements OnInit {
   }
 
   buscarProducto(id: number){
-    console.log('buscando producto xd'+id);
+    
     var ressult=true;
     this.productos.forEach(element => {
       if(element.codigo== id){ ressult= false;}
@@ -52,32 +56,22 @@ export class DetalleFacturacionPage implements OnInit {
     return ressult;
 }
   getProductoCantidad(){
-    for(let ele of this.listaProductos){
-      if(this.buscarProducto(ele.codigo)==true){
+    this.detalleFac.total=0;
+     for(let ele of this.listaProductos){
         this.productos.push(ele);
         var nuevo = new prodDetalle();
         nuevo.codigo = ele.codigo;
-        nuevo.cantidad=1;
+        nuevo.cantidad= parseInt(ele.cantidadVendida);
         nuevo.nombre= ele.nombre;
         nuevo.precio =ele.precio;
-        this.lsProd.push(nuevo);
-      }else{
-        this.lsProd.forEach(element=>{
-              if(element.codigo== ele.codigo){
-                  element.cantidad +=1;
-              }
-        });
-
-      }
-  }
-  console.log('prueba'+this.productos.length+' Prdocutos'+this.listaProductos.length);
+        // console.log('p: '+ele['usuario']['id']);
+        this.lsProd.push(nuevo); 
+   ///codigo nuevo
+        this.detalleFac.detalle.push(nuevo);
+        this.detalleFac.total += parseInt(ele.cantidadVendida)*parseFloat(ele.precio);
+    }
+  //console.log('prueba'+this.productos.length+' Prdocutos'+this.listaProductos.length);
   return this.productos;
 }
-  getTotal(listaProductos){
-    this.total=0;
-    for(let vars of listaProductos){
-        this.total=this.total+vars.precio;
-        console.log('Total: '+this.total);
-    }
-  }
+ 
 }

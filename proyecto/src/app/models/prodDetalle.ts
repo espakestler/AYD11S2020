@@ -3,5 +3,5 @@ export class prodDetalle{
     nombre:string;
     cantidad: number;
     precio: number;
-
 }
+
