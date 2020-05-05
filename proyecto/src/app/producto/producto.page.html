@@ -61,7 +61,8 @@
 
       <hr>
       <div style="margin-left: 25%; width: 50%;">
-        <ion-button expand="block" size="medium" type="submit" [disabled]="form.invalid">Agregar</ion-button>
+        
+        <ion-button shape="round" fill="outline" type="submit" [disabled]="form.invalid">Agregar</ion-button>
       </div>
     </form>
     
@@ -70,24 +71,15 @@
     <!--Comentarios-->
     <div *ngIf="dataReady">
       <ion-list>
-        <ion-card *ngFor="let comentario of comentarios; let i = index">
-          <ion-card-header>
-            <div style="text-align: center; width: 100%; height: auto;">
-                <div style="float:left;font-size: 20px;">
-                    <ion-icon color="medium" name="md-contact"></ion-icon>
-                </div>
-
-                <div style="color:black">
-                    <p>{{ comentario.nombre_usuario }} -- {{ comentario.correo_usuario }}</p>
-                </div>
-            </div>
-          </ion-card-header>
-    
-          <ion-card-content>
-              <div style="color:black;"><i>{{ comentario.texto }}</i></div>
-          </ion-card-content>
-      </ion-card>
-    </ion-list>
+        <ion-item *ngFor="let comentario of comentarios; let i = index">
+          <ion-label>
+            <h2>{{ comentario.nombre_usuario }}</h2>
+            <!--<h2>{{ comentario.nombre_usuario }}-- {{ comentario.correo_usuario }}</h2>-->
+                
+            <p>{{ comentario.contenido }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </div>
     
   </div>
