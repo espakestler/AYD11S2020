@@ -34,21 +34,18 @@ export class AuthService {
       this.http.post(url, { user:email, pass:password }, this.options)
       .pipe(map(data => data))
       .subscribe(data=> {
-        let user:User = data['user'];
-        
-        if (user) 
-        {
+        let estado:boolean = data['success'];
+        if (estado) {
+          let user:User = data['user'];
           this.currentUser = user;
-
           this.storageService.setObject('usuario', user).then(result => {
-            resolve(this.currentUser);
+            resolve(data);
           });
         }
-        else 
-        {
-          rejected('error');
+        else {
+          resolve(data);
         }
-      }, error => rejected(error));
+      }, error => rejected('Error de conexion'));
     });
   }
 
@@ -57,25 +54,24 @@ export class AuthService {
     this.router.navigate(['/landing']);
   }
 
-  register(nombre:string, correo:string, pass:string, fecha:string, dir:string, tipo:string) {
+  register(item:any) {
     const url = 'https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/registro-usuario';
-    let datos = { nombre: nombre, correo: correo, pass: pass, fecha: fecha, dir: dir, tipo: tipo };
 
     return new Promise((resolve,rejected) => {
-      this.http.post(url, datos, this.options)
+      this.http.post(url, JSON.stringify(item), this.options)
       .pipe(map(data => data))
       .subscribe(data => {
-        let estado:boolean = data['estado'];        
+        let estado:boolean = data['success'];
         if (estado) {
           let usuario = new User();
-          usuario.AgregarDatos(datos);
-          console.log(usuario);
-          this.currentUser = usuario;
-          resolve(this.currentUser);   
-        } else {
-          rejected('error');          
+          usuario.AgregarDatos(item);
+          this.storageService.setObject('usuario', item).then(result => {
+            resolve(data);
+          });
         }
-      }, error => rejected(error));
+        else
+          resolve(data);
+      }, error => rejected('Error de conexión'));
     });
   }
 
