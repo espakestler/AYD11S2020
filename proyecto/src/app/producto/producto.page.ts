@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationExtras } from "@angular/router";
 import { ApiService } from '../services/api.service'
 import { StorageService } from '../storage.service'
 import { analyzeAndValidateNgModules } from '@angular/compiler';
@@ -182,4 +182,14 @@ await alert.present();
     toast.present();
   }
 
+  async InfoVendedor(user:any) {
+    console.log(user);
+    let navExtra : NavigationExtras = {
+      queryParams : {
+        id_vendedor: user.codigo,
+        nombre: user.nombre
+      }
+    }
+    this.router.navigate(['info-vendedor'], navExtra);
+  }
 }

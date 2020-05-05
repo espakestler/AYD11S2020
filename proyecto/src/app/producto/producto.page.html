@@ -12,13 +12,14 @@
     </ion-toolbar>
     </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div *ngIf="dataReady">
-    <div style="color: #19303F; font: 20px sans-serif;"><b>{{producto.nombre}}</b></div>
+    <h2>{{producto.nombre}}</h2>
     <img src={{producto.url_foto}} alt="">
     <div style="color:#21497D; font: 20px sans-serif;"><b>Q. {{producto.precio}}</b></div>
-
-
+    <div style="color:darkslategrey; font: 16px sans-serif;"><b>Existencias: {{ producto.cantidad }}</b></div>
+    <div style="color:darkslategrey; font: 14px sans-serif;" (click)="InfoVendedor(producto.usuario)"><b>Vendedor: {{ producto.usuario.nombre }}</b></div>
+    
     <ion-item>
       <ion-label>Cantidad:</ion-label>
       <ion-select #mySelect [value]="cantidadActual" [selectedText]="cantidadActual" (ionChange)="seleccionar(mySelect.value)">
