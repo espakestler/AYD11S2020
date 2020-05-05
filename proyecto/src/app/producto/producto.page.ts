@@ -43,6 +43,8 @@ export class ProductoPage implements OnInit {
       this.servicio.getProduct(result).subscribe(m => {
         this.producto = m['data'][0];
         this.dataReady = true
+
+        console.log(this.producto);
         
         this.getComentarios(result)
       })
@@ -113,9 +115,21 @@ await alert.present();
         listaProductos = []
       }
 
-
+      if( isNaN(this.cantidad)){
+        this.cantidad=1;
+      }
       productoCarrito.cantidadVendida = this.cantidad;
-      listaProductos.push(productoCarrito);
+      let bandera= true;
+      if(listaProductos.length){
+            listaProductos.forEach(element => {
+              if(element.codigo === productoCarrito.codigo){
+                  element.cantidadVendida = parseInt(element.cantidadVendida)+ parseInt(productoCarrito.cantidadVendida);
+                  bandera=false;
+              }
+            });
+      }
+     if(bandera) listaProductos.push(productoCarrito);
+
       this.storageService.setObject('id_usuario', listaProductos).then(result => {        
       }).catch(e => {
         console.log("error: " + e);
