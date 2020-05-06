@@ -179,6 +179,8 @@ await alert.present();
 
       form.reset();
       this.comentarios.push(local_data)
+
+      this.showToastMsg('¡Comentario agregado!')
       //this.getComentarios(this.codigoProducto)
     })
   }
@@ -189,6 +191,16 @@ await alert.present();
       this.comentarios = d["data"];
     });
   }
+
+  async showToastMsg(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
 
   async showToast() {
     const toast = await this.toastController.create({
