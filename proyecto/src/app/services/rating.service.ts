@@ -21,7 +21,6 @@ export class RatingService {
     return new Promise((resolve, rejected) => {      
       this.http.post(url, JSON.stringify(item_rating), this.options)
       .subscribe(data => {
-        console.log(data);
         let estado = data['success'];
         resolve(estado);
       }, error => rejected(false));

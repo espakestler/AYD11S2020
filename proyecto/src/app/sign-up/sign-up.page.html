@@ -38,15 +38,14 @@
         <ion-input type="text" formControlName="dir"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Qué quiero hacer?</ion-label>
+        <ion-label position="floating">¿Qué quiero hacer?</ion-label>
         <ion-select formControlName="tipo" value="1" okText="Ok" cancelText="Salir">
           <ion-select-option value=2>Comprar</ion-select-option>
           <ion-select-option value=3>Vender</ion-select-option>
         </ion-select>
       </ion-item>
     
-      <!-- <ion-button expand="block" size="large" type="submit" shape="round" [disabled]="form.invalid"> -->
-      <ion-button expand="block" size="large" type="submit" shape="round">
+      <ion-button expand="block" size="large" type="submit" shape="round" [disabled]="form.invalid">
         Registrarse
       </ion-button>
   

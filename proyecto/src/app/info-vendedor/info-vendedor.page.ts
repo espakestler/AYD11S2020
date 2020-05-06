@@ -55,6 +55,7 @@ export class InfoVendedorPage implements OnInit {
     if (!this.form.valid) { return; }
     this.ratingService.new_rating(this.form.value)
     .then(() => {
+      this.form.reset();
       this.getRatings();
     });
   }
@@ -63,7 +64,7 @@ export class InfoVendedorPage implements OnInit {
     this.Comentarios = [];
     this.ratingService.list_rating(this.Vendedor.codigo)
     .then(ret => {
-      this.Comentarios = ret;
+      this.Comentarios = ret;console.log(this.Comentarios);
     });
   }
 

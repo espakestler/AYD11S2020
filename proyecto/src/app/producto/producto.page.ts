@@ -200,7 +200,7 @@ await alert.present();
   }
 
   async InfoVendedor(user:any) {
-    console.log(user);
+    // console.log(user);
     let navExtra : NavigationExtras = {
       queryParams : {
         id_vendedor: user.codigo,
