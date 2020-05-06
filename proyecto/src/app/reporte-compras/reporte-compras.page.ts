@@ -42,7 +42,7 @@ export class ReporteComprasPage implements OnInit {
         console.log(this.listaVenta);
       });
      
-      
+      usuario(this.Usuario);
     })
   }
 
@@ -52,4 +52,20 @@ export class ReporteComprasPage implements OnInit {
     this.router.navigate(["/login"])
   }
 
+
+
+}
+export function tipoPago(tipo){
+  if(tipo==1){
+    return "efectivo";
+  }else {
+    return "tarjeta";
+  }
+}
+export function usuario(usuario){
+  if(usuario===null || usuario===undefined){
+    return true;
+  }else{
+    return false;
+  }
 }

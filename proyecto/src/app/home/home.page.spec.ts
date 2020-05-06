@@ -5,20 +5,13 @@ import { HomePage } from './home.page';
 
 describe('HomePage', () => {
   let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [HomePage],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toEqual(undefined);
+  });
+
+  it('La informacion debe de cargarse despues de iniciar la pagina', () => {
+    expect(component.dataReady).toEqual(false);
   });
 });

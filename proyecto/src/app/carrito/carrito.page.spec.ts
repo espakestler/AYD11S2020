@@ -3,22 +3,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { CarritoPage } from './carrito.page';
 
+
 describe('CarritoPage', () => { 
   let component: CarritoPage;
-  let fixture: ComponentFixture<CarritoPage>;
+  let listaProductos = [1,2]
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CarritoPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(CarritoPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toEqual(undefined);
   });
+
+  it('lista de productos mayor a 0', ()=>{
+    expect(listaProductos.length > 0).toEqual(true)
+  })
 });

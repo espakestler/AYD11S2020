@@ -7,18 +7,8 @@ describe('LandingPage', () => {
   let component: LandingPage;
   let fixture: ComponentFixture<LandingPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LandingPage ],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(LandingPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toEqual(undefined);
   });
 });

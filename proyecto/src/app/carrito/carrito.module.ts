@@ -8,12 +8,18 @@ import { CarritoPageRoutingModule } from './carrito-routing.module';
 
 import { CarritoPage } from './carrito.page';
 
+import { StorageService} from '../storage.service'
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CarritoPageRoutingModule
+    CarritoPageRoutingModule,
+  ],
+  providers:[
+    StorageService
   ],
   declarations: [CarritoPage]
 })
