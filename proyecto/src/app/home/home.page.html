@@ -4,8 +4,17 @@
       <img src="../../assets/icon/logo.png" alt="" height="50px">
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon slot="end" color="medium" name="cart"></ion-icon>
-      <ion-icon slot="end" color="medium" name="contact" routerLink="/login"></ion-icon>
+      <ion-menu-button> </ion-menu-button>
+      <div *ngIf="dataReady">
+        <div *ngIf="usuario.codigo_tipousuario == 3 || usuario.codigo_tipousuario == 1">
+          <ion-icon slot="end" color="success" name="md-add-circle" routerLink="/subir-producto"></ion-icon>
+        </div>
+        <div *ngIf="usuario.codigo_tipousuario == 2">
+          <ion-icon slot="end" color="medium" name="cart" routerLink="/carrito"></ion-icon>
+        </div>
+      </div>
+      <ion-icon slot="end" color="medium" name="contact" routerLink="/perfil-usuario"></ion-icon>
+      <ion-icon slot="end" color="medium" name="md-log-out" (click)="cerrarSesion()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 
@@ -14,23 +23,33 @@
 
 <ion-content>
   <ion-list>
-      <ion-card *ngFor="let producto of productos; let i = index" (click)="openProduct(producto.username)">
+      <ion-card *ngFor="let producto of productos; let i = index" (click)="openProduct(producto.codigo)">
         <ion-card-header>
             <button>
-              <p>{{producto.name}}</p>
+              <p>{{producto.nombre}}</p>
             </button>
         </ion-card-header>
   
         <ion-card-content>
             <ion-list>
-              <div style="font-size: 18px; color: black;">
-                <ion-icon name="person"></ion-icon>
-                <i> {{producto.username}}</i>
-              </div>  
-  
-              <div style="font-size: 18px; color: black;">
-                <ion-icon name="mail"></ion-icon>
-                <i> {{producto.email}}</i>
+              <div style="color: black;">
+                <div style="float: left; width: 40%">
+                  <img src={{producto.url_foto}} alt="">
+                </div>
+
+                <div style="float: left;">
+                  <p style="text-align: center; color:#21497D;  "><b>Q. {{producto.precio}}</b></p>
+                  <!--<p>Categoría: <a href="">{{producto.categoria}}</a></p>-->
+                  <div>Categoría: <b><i>{{producto.categoria}}</i></b></div>
+                  <ionic4-star-rating
+                    activeIcon = "ios-star"
+                    defaultIcon = "ios-star-outline"
+                    activeColor = "#FFA500" 
+                    defaultColor = "#595959"
+                    readonly="true"
+                    [rating]="producto.rating">
+                  </ionic4-star-rating>
+                </div>
               </div>
             </ion-list>
         </ion-card-content>

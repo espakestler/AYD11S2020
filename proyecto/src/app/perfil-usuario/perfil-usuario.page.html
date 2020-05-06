@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Mi Perfil</ion-title>
+    <ion-buttons slot="start" routerLink="/home">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button> </ion-menu-button>
+      <ion-icon slot="end" color="medium" name="cart" routerLink="/carrito"></ion-icon>
+      <ion-icon slot="end" color="medium" name="md-log-out" (click)="logout()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-box">
+<!-- (ngSubmit)="save()" -->
+    <form #saveForm="ngForm" *ngIf="dataReady">
+      <ion-row>
+        <ion-col>
+          <ion-list >
+
+            <ion-item>
+              <!-- [(ngModel)]="info.name" -->
+              <ion-input  type="text" name="name" [(ngModel)]="Usuario.nombre" required> </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <!--[(ngModel)]="info.email"  -->
+              <ion-input type="text" name="email" required readonly> {{Usuario.correo}} </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <!-- [(ngModel)]="info.password" -->
+              <ion-input type="password" name="pass" [(ngModel)]="Usuario.pass" required>   </ion-input>
+            </ion-item>
+            <ion-item>
+              <!-- [(ngModel)]="info.name" -->
+              <ion-input type="text" name="direccion" [(ngModel)]="Usuario.direccion" required>   </ion-input>
+            </ion-item>
+            <ion-item> 
+              <ion-label>Fecha Nacimiento</ion-label>
+              <ion-datetime   value="{{Usuario.fecha_nacimiento}}"
+              cancelText="Cancelar"
+             [(ngModel)]="Usuario.fecha_nacimiento"
+             [ngModelOptions]="{standalone: true}"></ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <!-- [disabled]="!saveForm.form.valid"-->
+          <ion-button  (click)="guardar(Usuario)">Guardar</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+
+</ion-content>

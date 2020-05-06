@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from  "@angular/router";
+import { AuthService } from '../services/auth.service';
+import { ToastController } from '@ionic/angular';
+
+import { StorageService } from '../storage.service'
 
 @Component({
   selector: 'app-login',
@@ -8,12 +12,48 @@ import { Router } from  "@angular/router";
 })
 export class LoginPage implements OnInit {
 
-  constructor(private  router:  Router) { }
+  constructor(private authService: AuthService,
+              public  router:  Router,
+              public toastController: ToastController,
+              public storageService: StorageService ) { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+  }
+
+  ionViewWillEnter()
+  {
+    this.storageService.getObject("usuario").then(result => {
+
+      if(result)
+      {
+        this.router.navigate(["/home"])
+        return
+      }
+    });  
   }
   
-  login(form){
-      this.router.navigateByUrl('home');
+  ionViewDidEnter()
+  {
   }
+
+  login(form)
+  {
+      this.authService.login(form.value.email, form.value.pass)
+      .then(res => {
+          form.reset()
+          window.location.reload()
+          this.router.navigate(['/home']);
+        }
+      ).catch(err => this.presentToast('Los datos son incorrectos o ya existe el usuario'))
+  }
+
+  async presentToast(mensaje:string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
+  }
+
 }

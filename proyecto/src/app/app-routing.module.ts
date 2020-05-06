@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'landing',
     pathMatch: 'full'
   },
   {
@@ -26,6 +27,34 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'carrito',
+    loadChildren: () => import('./carrito/carrito.module').then( m => m.CarritoPageModule)
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+  },
+  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
+  },
+  {
+    path: 'detalle-facturacion',
+    loadChildren: () => import('./detalle-facturacion/detalle-facturacion.module').then( m => m.DetalleFacturacionPageModule)
+  },
+  {
+    path: 'subir-producto',
+    loadChildren: () => import('./subir-producto/subir-producto.module').then( m => m.SubirProductoPageModule)
+  },
+  {
+    path: 'reporte-compras',
+    loadChildren: () => import('./reporte-compras/reporte-compras.module').then( m => m.ReporteComprasPageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   }
 ];
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -20,7 +23,7 @@ export class ListPage implements OnInit {
     'build'
   ];
   public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
+  constructor(public http: HttpClient) {
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
@@ -28,6 +31,28 @@ export class ListPage implements OnInit {
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
+  }
+
+
+  post(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type':'application/json',
+      })
+    };
+
+    let formData = {
+      'user': 'hpablo677@gmail.com',
+      'pass': '123'
+    };
+
+    var url = 'https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/login';
+    let response = this.http.post(url, formData, httpOptions);
+
+    response.subscribe(data =>{
+      console.log(data);
+    })
   }
 
   ngOnInit() {
