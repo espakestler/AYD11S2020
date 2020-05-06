@@ -1,6 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalle Factura</ion-title>
+    <ion-buttons slot="start" routerLink="/home">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+    <ion-buttons slot="end">
+    
+      <ion-icon slot="end" color="medium" name="contact" routerLink="/perfil-usuario"></ion-icon>
+      <ion-icon slot="end" color="medium" name="md-log-out" (click)="cerrarSesion()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

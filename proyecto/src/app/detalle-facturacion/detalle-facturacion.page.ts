@@ -9,6 +9,7 @@ import { element } from 'protractor';
 import { DetalleFactura } from '../models/DetalleFactura';
 import { parse } from 'querystring';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-detalle-facturacion',
   templateUrl: './detalle-facturacion.page.html',
@@ -17,7 +18,7 @@ import { User } from '../models/user';
 //var total;
 export class DetalleFacturacionPage implements OnInit {
 
-  constructor(public storageService: StorageService,private servicio: ApiService, ) { }
+  constructor(public storageService: StorageService,private servicio: ApiService,private router:Router ) { }
    total: any;
    listaProductos: any[];
    productos: any[];
@@ -52,6 +53,14 @@ export class DetalleFacturacionPage implements OnInit {
     })
 
   }
+
+  cerrarSesion()
+  {
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
+  }
+
+
   // Metodo para facturacion
   facturar(){
     console.log('enviaremos codclie: '+this.Usuario.codigo+' total: '+this.detalleFac.total)
@@ -78,6 +87,7 @@ export class DetalleFacturacionPage implements OnInit {
                   let estado2= ret['success'];
                   if(estado2){
                       console.log('Detalle de venta insertado correctamente');
+                      this.storageService.remove('id_usuario');
                   }else{
                       console.log('error a insertar detalle de venta');
                   }

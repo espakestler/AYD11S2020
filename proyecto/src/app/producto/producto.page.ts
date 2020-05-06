@@ -149,7 +149,6 @@ await alert.present();
   agregarComentario(form)
   {
     this.storageService.getCurrentUser().then(result =>{
-
       let data = {
         texto: form.value.texto,
         codigo_producto: this.codigoProducto,
@@ -157,10 +156,8 @@ await alert.present();
         nombre_usuario: result.nombre,
         correo_usuario: result.correo
       }
-
       //this.servicio.executePost('', data)
       console.log(data)
-      
       form.reset();
       this.comentarios.push(data)
       //this.getComentarios(this.codigoProducto)
