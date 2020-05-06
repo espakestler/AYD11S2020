@@ -38,7 +38,11 @@
     </ion-item-sliding>
   </ion-list>
   
-  <ion-button expand="full" color="success" (click)="print()"  routerLink="/detalle-facturacion"> Comprar</ion-button>
+  <div *ngIf="listaProductos">    
+      <div *ngIf="listaProductos.length > 0">
+        <ion-button expand="full" color="success" (click)="print()"  routerLink="/detalle-facturacion"> Comprar</ion-button>
+      </div>
+    </div>
 
 
     <!-- <ion-button expand="full" color="success" (click)="print()"> obtener</ion-button>

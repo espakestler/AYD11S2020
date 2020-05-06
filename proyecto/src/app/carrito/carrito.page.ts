@@ -37,12 +37,12 @@ export class CarritoPage implements OnInit {
   
   print()
   {
-    for(var i = 0; i < this.listaProductos.length; i++){
+    /*for(var i = 0; i < this.listaProductos.length; i++){
         
       console.log(this.listaProductos[i].codigo);
       console.log(this.listaProductos[i].url_foto);
       console.log(this.listaProductos[i]['usuario']);
-    }
+    }*/
   }
 
   quitar(producto){
