@@ -5,6 +5,7 @@ import { HomePage } from './home.page';
 
 describe('HomePage', () => {
   let component: HomePage;
+  let dataReady = false;
 
 
   it('should create', () => {
@@ -12,6 +13,6 @@ describe('HomePage', () => {
   });
 
   it('La informacion debe de cargarse despues de iniciar la pagina', () => {
-    expect(component.dataReady).toEqual(false);
+    expect(dataReady).toEqual(false);
   });
 });
