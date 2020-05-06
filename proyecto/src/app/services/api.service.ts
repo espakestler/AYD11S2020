@@ -41,6 +41,20 @@ export class ApiService {
     return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-gtech-usuarios')
   }
 
+
+
+  ejecutarPosVentas( data) : Promise<any>
+  {
+    let url ='https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/report-sale';
+    return new Promise((resolve, rejected) => {
+      this.http.post(url, data, this.options)
+      .subscribe(data => {
+        resolve(data)
+      }, error => rejected(error));
+    });    
+  }
+
+
   executePost(url, data)
   { 
     

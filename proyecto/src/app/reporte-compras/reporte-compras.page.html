@@ -1,9 +1,38 @@
-<ion-header>
+<ion-header>  
   <ion-toolbar>
-    <ion-title>reporte-compras</ion-title>
+    <ion-buttons slot="start" routerLink="/home">
+      <img src="../../assets/icon/logo.png" alt="" height="50px">
+    </ion-buttons>
+    <ion-buttons slot="end">
+    
+      <ion-icon slot="end" color="medium" name="contact" routerLink="/perfil-usuario"></ion-icon>
+      <ion-icon slot="end" color="medium" name="md-log-out" (click)="cerrarSesion()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content>
+  <ion-text color="secondary">
+    <h1>Muchas gracias por sus compras! aca le dejamos su historial</h1>
+  </ion-text>
+  <ion-list>
+    <ion-item-sliding *ngFor="let venta of listaVenta">
+      <ion-item>
+       
+        <ion-label>
+          <h2>{{ venta.fecha }}</h2>
+          <h3>Q.{{ venta.total }}</h3>
+        
+        </ion-label>
+      </ion-item>
 
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="quitar(producto)" expandable>
+          Quitar
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
