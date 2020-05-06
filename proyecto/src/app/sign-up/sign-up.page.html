@@ -7,39 +7,53 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
   <div class="ion-text-center">
-    <h3>Registro</h3>
+    <ion-title size="large">Registrarse</ion-title>
   </div>
 
-  <form #form="ngForm" (ngSubmit)="registrar(form)">
-    <ion-item>
-      <ion-input name="name" type="text" placeholder="Nombre Completo" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="password" type="password" placeholder="Contraseña" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="confirm" type="password" placeholder="Confirmar Contraseña" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="fecha" type="text" placeholder="2020/02/02" ngModel required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input name="direccion" type="text" placeholder="Dirección" ngModel required></ion-input>
-    </ion-item>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="registrar()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="correo" placeholder="your@email.com"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="pass"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input type="password" formControlName="pass1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Fecha Nacimiento</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat ="" min="1990-01-01" max="2010-01-01" formControlName="fecha"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input type="text" formControlName="dir"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Qué quiero hacer?</ion-label>
+        <ion-select formControlName="tipo" value="1" okText="Ok" cancelText="Salir">
+          <ion-select-option value=2>Comprar</ion-select-option>
+          <ion-select-option value=3>Vender</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <!-- <ion-button expand="block" size="large" type="submit" shape="round" [disabled]="form.invalid"> -->
+      <ion-button expand="block" size="large" type="submit" shape="round">
+        Registrarse
+      </ion-button>
   
-    <ion-button expand="block" size="large" type="submit" [disabled]="form.invalid">
-      Registrarse
-    </ion-button>
-
-    <ion-row class="ion-justify-content-center">
-      <div class="ion-text-center">¿Ya tienes una cuenta? <a routerLink='/login'>Entra</a></div>
-    </ion-row>
-
+      <ion-row class="ion-justify-content-center">
+        <div class="ion-text-center">¿Ya tienes una cuenta? <a routerLink='/login'>Entra</a></div>
+      </ion-row>
+    </ion-list>    
   </form>
 
 </ion-content>

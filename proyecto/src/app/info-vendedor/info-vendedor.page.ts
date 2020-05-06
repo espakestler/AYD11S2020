@@ -19,7 +19,8 @@ export class InfoVendedorPage implements OnInit {
   constructor(private route: ActivatedRoute,
               private ratingService: RatingService, 
               private formBuilder: FormBuilder,
-              private storageService: StorageService) 
+              private storageService: StorageService,
+              private router: Router) 
     {
       this.storageService.getCurrentUser().then((data) => {
         this.Usuario = data;
@@ -64,6 +65,11 @@ export class InfoVendedorPage implements OnInit {
     .then(ret => {
       this.Comentarios = ret;
     });
+  }
+
+  cerrarSesion() {
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
   }
 
 }
