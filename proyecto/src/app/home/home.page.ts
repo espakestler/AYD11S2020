@@ -35,18 +35,11 @@ export class HomePage {
       this.usuario = result;
       this.dataReady = true;
 
-      if (this.usuario.codigo_tipousuario == 3 ||this.usuario.codigo_tipousuario == 1) 
-      {
-        this.productos = [];
-        this.catalogo = [];
-      } 
-      else 
-      {
-        this.servicio.getData().subscribe(m => {
-          this.catalogo = m["data"];
-          this.productos = m["data"];
-        });
-      }
+      this.servicio.getData().subscribe(m => {
+        this.catalogo = m["data"];
+        this.productos = m["data"];
+      });
+      
       
     });
   }

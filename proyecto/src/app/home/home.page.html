@@ -21,8 +21,61 @@
   <ion-searchbar animated placeholder="Buscar..." (ionInput)="buscarProducto($event)"></ion-searchbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
+<ion-content *ngIf="dataReady">
+
+  <ion-list *ngIf="usuario.codigo_tipousuario == 1 ||  usuario.codigo_tipousuario == 3">
+      <ion-card *ngFor="let producto of productos; let i = index" (click)="openProduct(producto.codigo)">
+          <div *ngIf="usuario.codigo == producto.usuario.codigo" >
+              <ion-card-header>
+                  <button>
+                    <p>{{producto.nombre}}</p>
+                  </button>
+              </ion-card-header>
+        
+              <ion-card-content>
+                  <ion-list>
+                    <div style="color: black;">
+                      <div style="float: left; width: 40%">
+                        <img src={{producto.url_foto}} alt="">
+                      </div>
+      
+                      <div style="float: left;">
+                        <p style="text-align: center; color:#21497D;  "><b>Q. {{producto.precio}}</b></p>
+                        <!--<p>Categoría: <a href="">{{producto.categoria}}</a></p>-->
+                        <div>Categoría: <b><i>{{producto.categoria}}</i></b></div>
+                        
+                        <div *ngIf= "producto.rating > 0">
+                          <ionic4-star-rating
+                            activeIcon = "ios-star"
+                            defaultIcon = "ios-star-outline"
+                            activeColor = "#FFA500" 
+                            defaultColor = "#595959"
+                            readonly="true"
+                            [rating]="producto.rating">
+                          </ionic4-star-rating>
+                        </div>
+      
+                        <div *ngIf= "producto.rating == 0">
+                          <ionic4-star-rating
+                          activeIcon = "ios-star"
+                          defaultIcon = "ios-star-outline"
+                          activeColor = "#D5D8DC" 
+                          defaultColor = "#595959"
+                          readonly="true"
+                          [rating]="5">
+                        </ionic4-star-rating>
+                        </div>
+      
+                      </div>
+                    </div>
+                  </ion-list>
+              </ion-card-content>
+          </div>
+      </ion-card>
+    
+  </ion-list>
+  
+  <ion-list *ngIf="usuario.codigo_tipousuario == 2">
       <ion-card *ngFor="let producto of productos; let i = index" (click)="openProduct(producto.codigo)">
         <ion-card-header>
             <button>
