@@ -41,14 +41,29 @@
                   <p style="text-align: center; color:#21497D;  "><b>Q. {{producto.precio}}</b></p>
                   <!--<p>Categoría: <a href="">{{producto.categoria}}</a></p>-->
                   <div>Categoría: <b><i>{{producto.categoria}}</i></b></div>
-                  <ionic4-star-rating
+                  
+                  <div *ngIf= "producto.rating > 0">
+                    <ionic4-star-rating
+                      activeIcon = "ios-star"
+                      defaultIcon = "ios-star-outline"
+                      activeColor = "#FFA500" 
+                      defaultColor = "#595959"
+                      readonly="true"
+                      [rating]="producto.rating">
+                    </ionic4-star-rating>
+                  </div>
+
+                  <div *ngIf= "producto.rating == 0">
+                    <ionic4-star-rating
                     activeIcon = "ios-star"
                     defaultIcon = "ios-star-outline"
-                    activeColor = "#FFA500" 
+                    activeColor = "#D5D8DC" 
                     defaultColor = "#595959"
                     readonly="true"
-                    [rating]="producto.rating">
+                    [rating]="5">
                   </ionic4-star-rating>
+                  </div>
+
                 </div>
               </div>
             </ion-list>

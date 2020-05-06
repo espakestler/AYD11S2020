@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from  "@angular/router";
 import { StorageService } from '../storage.service'
+import { ApiService } from '../services/api.service'
 
 @Component({
   selector: 'app-usuarios',
@@ -12,12 +13,26 @@ export class UsuariosPage implements OnInit {
 
   constructor(
     private  router:  Router,
-    public storageService: StorageService
+    public storageService: StorageService,
+    private servicio: ApiService
   ) { }
+
+  usuarios:any[]
 
   ngOnInit() {
   }
 
+  async ionViewWillEnter()
+  {
+    this.servicio.getUsers().subscribe(d => {
+      this.usuarios = d["data"];
+    });
+  }
+
+  modificarUsuario()
+  {
+    
+  }
 
   cerrarSesion()
   {

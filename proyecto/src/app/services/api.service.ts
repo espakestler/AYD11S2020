@@ -33,7 +33,12 @@ export class ApiService {
 
   getComentarios(codigo_producto)
   {
-    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/comentarios?codigo=' + codigo_producto)
+    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-gtech-comentarios?codigo_producto=' + codigo_producto)
+  }
+
+  getUsers()
+  {
+    return this.http.get('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-gtech-usuarios')
   }
 
 

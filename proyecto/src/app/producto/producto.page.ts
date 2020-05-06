@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationExtras } from "@angular/router";
 import { ApiService } from '../services/api.service'
 import { StorageService } from '../storage.service'
 import { analyzeAndValidateNgModules } from '@angular/compiler';
@@ -7,6 +7,8 @@ import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 
 import { Router } from  "@angular/router";
+
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Component({
   selector: 'app-producto',
@@ -30,32 +32,40 @@ export class ProductoPage implements OnInit {
     private storageService: StorageService, 
     public alertController: AlertController,
     private  router:  Router,    
-    private toastController: ToastController
+    private toastController: ToastController,
+    public http: HttpClient
     ) { }
 
-  async ngOnInit() {
-    this.cantidadArray = ["Otra", "1", "2", "3" ];
-    this.cantidadActual = "1";
+    ngOnInit()
+    {
+    }
 
-    this.storageService.getObject('codigo_producto').then(async result => {   
-      this.codigoProducto = result;
+    async ionViewWillEnter() 
+    {
+      this.cantidadArray = ["Otra", "1", "2", "3" ];
+      this.cantidadActual = "1";
 
-      this.servicio.getProduct(result).subscribe(m => {
-        this.producto = m['data'][0];
-        this.dataReady = true
+      this.storageService.getObject('codigo_producto').then(async result => {   
+        this.codigoProducto = result;
 
-        console.log(this.producto);
-        
-        this.getComentarios(result)
+        this.servicio.getProduct(result).subscribe(m => {
+          this.producto = m['data'][0];
+          this.dataReady = true
+          //console.log(result)
+          this.getComentarios(result)
+        })
       })
-    })
-  }
+    }
 
   
-  seleccionar(seleccionarCantidad) {
-    if (seleccionarCantidad === 'Otra') {
+  seleccionar(seleccionarCantidad) 
+  {
+    if (seleccionarCantidad === 'Otra') 
+    {
       this.nuevaCantidad()
-    } else {
+    } 
+    else 
+    {
       this.cantidadActual = seleccionarCantidad;
     };
 
@@ -152,19 +162,29 @@ await alert.present();
       let data = {
         texto: form.value.texto,
         codigo_producto: this.codigoProducto,
+        codigo_usuario: result.codigo
+      }
+
+      this.servicio.executePost('https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-gtech-crear-comentario', data)
+      
+
+      let local_data = {
+        contenido: form.value.texto,
+        codigo_producto: this.codigoProducto,
         codigo_usuario: result.codigo,
         nombre_usuario: result.nombre,
         correo_usuario: result.correo
       }
-      //this.servicio.executePost('', data)
       console.log(data)
+
       form.reset();
-      this.comentarios.push(data)
+      this.comentarios.push(local_data)
       //this.getComentarios(this.codigoProducto)
     })
   }
 
-  getComentarios(codigo_producto){
+  getComentarios(codigo_producto)
+  {
     this.servicio.getComentarios(codigo_producto).subscribe(d => {
       this.comentarios = d["data"];
     });
@@ -179,4 +199,14 @@ await alert.present();
     toast.present();
   }
 
+  async InfoVendedor(user:any) {
+    // console.log(user);
+    let navExtra : NavigationExtras = {
+      queryParams : {
+        id_vendedor: user.codigo,
+        nombre: user.nombre
+      }
+    }
+    this.router.navigate(['info-vendedor'], navExtra);
+  }
 }
