@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../services/api.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Router } from  "@angular/router";
+import { StorageService } from '../storage.service'
+import { User } from "../models/user";
 
 @Component({
   selector: 'app-subir-producto',
@@ -10,37 +14,51 @@ import { ApiService } from '../services/api.service'
 export class SubirProductoPage implements OnInit {
 
   categorias: any[]
-  descripcion: any
-  categoria_temp:any
+  url = 'https://gzmqm82c19.execute-api.us-east-1.amazonaws.com/gtec/ayds1-gtech-crear-producto';
 
-  constructor(public servicio: ApiService) { }
+  usuario : User
+
+  constructor(
+    public servicio: ApiService,
+    private http: HttpClient,
+    private storageService: StorageService, 
+    private  router:  Router
+    ) { }
 
   ngOnInit() {
 
     this.servicio.getCategorias().subscribe(m => {
       this.categorias = m["data"];
     })
+
+    this.storageService.getObject('usuario').then(result =>{
+      this.usuario = result
+    });
     
   }
 
   insertarProducto(form)
   {
-    console.log(form.value.nombre)
-    console.log(form.value.precio)
-    console.log(form.value.url_foto)
-    console.log(this.categoria_temp)
-    console.log(form.value.cantidad)
-    console.log(this.descripcion)
-  }
+    
+    let data = 
+    {
+      id_usuario: this.usuario.codigo,
+      nombre: form.value.nombre,
+      precio: form.value.precio,
+      codigo_categoria: form.value.categoria,
+      url_foto: form.value.url_foto,
+      cantidad: form.value.cantidad,
+      descripcion: form.value.descripcion
+    }
+    
+    this.servicio.executePost(this.url, data);
 
-  guardarCategoria(cate)
-  {
-    this.categoria_temp = cate
   }
 
   cerrarSesion()
   {
-
+    this.storageService.remove("usuario")
+    this.router.navigate(["/login"])
   }
 
 }
