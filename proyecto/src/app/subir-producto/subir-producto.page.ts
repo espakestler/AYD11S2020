@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Router } from  "@angular/router";
 import { StorageService } from '../storage.service'
 import { User } from "../models/user";
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-subir-producto',
@@ -22,7 +24,8 @@ export class SubirProductoPage implements OnInit {
     public servicio: ApiService,
     private http: HttpClient,
     private storageService: StorageService, 
-    private  router:  Router
+    private  router:  Router,
+    private toastController: ToastController
     ) { }
 
   ngOnInit() {
@@ -53,6 +56,18 @@ export class SubirProductoPage implements OnInit {
     
     this.servicio.executePost(this.url, data);
     form.reset();
+
+    this.showToastMsg("¡Producto registrado exitosamente!")
+  }
+
+
+  async showToastMsg(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 1000,
+      position: 'middle',
+    });
+    toast.present();
   }
 
   cerrarSesion()
