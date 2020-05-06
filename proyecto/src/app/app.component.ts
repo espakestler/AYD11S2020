@@ -31,6 +31,11 @@ export class AppComponent {
       title: 'Usuarios',
       url: '/usuarios',
       icon: 'md-people'
+    },
+    {
+      title: 'Categorias',
+      url: '/categoria',
+      icon: 'md-apps'
     }
   ];
 
@@ -56,6 +61,7 @@ export class AppComponent {
 
       if ( result.codigo_tipousuario == 2) 
       {
+        this.appPages.splice(1, 1)
         this.appPages.splice(1, 1)
       } 
       
