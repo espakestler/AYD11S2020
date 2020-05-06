@@ -52,7 +52,7 @@ export class SubirProductoPage implements OnInit {
     }
     
     this.servicio.executePost(this.url, data);
-
+    form.reset();
   }
 
   cerrarSesion()
